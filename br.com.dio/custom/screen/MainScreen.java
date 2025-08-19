@@ -9,6 +9,7 @@ import br.com.dio.custom.panel.MainPanel;
 import br.com.dio.custom.panel.SudokuSector;
 import br.com.dio.model.Space;
 import br.com.dio.service.BoardService;
+import br.com.dio.service.EventListener;
 import br.com.dio.service.NotifierService;
 
 import javax.swing.*;
@@ -66,7 +67,7 @@ public class MainScreen {
 
     private JPanel generateSection(final List<Space> spaces){
         List<NumberText> fields = new ArrayList<>(spaces.stream().map(NumberText::new).toList());
-        fields.forEach(t -> notifierService.subscribe(CLEAR_SPACE, t));
+        fields.forEach(t -> notifierService.subscribe(CLEAR_SPACE, (EventListener) t));
         return new SudokuSector(fields);
     }
 
